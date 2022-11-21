@@ -1,0 +1,11 @@
+Two_Cities_Ch_1:	4627
+TTT_Ch_1:		13677
+HHGTTG_Ch_1:		18960
+Hobbit_Ch_1:		35581
+FOOR_Ch_1:		41616
+RTOTK_Ch_1:		51109
+Alice:			107667
+Frankenstein:		332135
+Sherlock_Holmes:	431087
+Dracula:		640817
+Moby Dick:		935605
