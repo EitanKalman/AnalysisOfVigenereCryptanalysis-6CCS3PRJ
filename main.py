@@ -20,6 +20,7 @@ def time_attack(ciphertext, attack):
     start_time = time.time()
     calculated_key_length = attack(ciphertext)
     end_time = time.time()
+    print(calculated_key_length)
     return(end_time-start_time)
 
 def average_time(ciphertexts, attack):
@@ -60,7 +61,11 @@ def main():
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
-    # print(len(keys))
+    string = ""
+    for i in keys:
+        string += f"{len(i)}, "
+    print(string)
+    print(keys)
     # attacks = [run_IOC_attack, run_shifted_text_attack, run_kasiski_attack]
     attacks = [run_kasiski_attack]
     files = [

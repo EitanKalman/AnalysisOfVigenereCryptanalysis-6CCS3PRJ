@@ -51,7 +51,8 @@ def _get_possible_key_length(distances):
 	for i in distances:
 		factors = _get_factors(i)
 		frequencies.update(factors)
-	# Count the frequencies of all factors
+	# Remove 2 as it sometimes causes the result to be multiplied by 2 unnecessarily   
+	del frequencies[2]
 	max_value = frequencies.most_common(1)[0][1]
 	possible_key_lengths = []
 	for key, value in frequencies.items():
