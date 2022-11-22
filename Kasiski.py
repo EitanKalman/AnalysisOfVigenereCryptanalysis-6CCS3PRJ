@@ -46,13 +46,12 @@ def _get_factors(num):
 
 #Calculate the key length based on the factors of all the distances between repeated substrings
 def _get_possible_key_length(distances):
-	all_factors = []
-	# Loop over the distances between the repeated substrings and calculate the factors- likely key lengths and add them to allFactors
+	frequencies = Counter()
+	# Loop over the distances between the repeated substrings and calculate the factors- likely key lengths
 	for i in distances:
 		factors = _get_factors(i)
-		all_factors.extend(factors)
+		frequencies.update(factors)
 	# Count the frequencies of all factors
-	frequencies = Counter(all_factors)
 	max_value = frequencies.most_common(1)[0][1]
 	possible_key_lengths = []
 	for key, value in frequencies.items():
