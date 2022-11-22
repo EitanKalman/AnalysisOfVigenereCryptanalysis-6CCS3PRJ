@@ -54,29 +54,32 @@ def main_temp():
 
 def main():
     keys = []
-    for i in range(0, 10):
+    for i in range(0, 1):
         key_length = randint(3,20)
         key = ""
         for i in range(0, key_length):
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
-    string = ""
+    string = "keys lengths: "
     for i in keys:
         string += f"{len(i)}, "
     print(string)
-    print(keys)
-    # attacks = [run_IOC_attack, run_shifted_text_attack, run_kasiski_attack]
-    attacks = [run_kasiski_attack]
+    # print(keys)
+    attacks = [run_IOC_attack, run_shifted_text_attack, run_kasiski_attack]
+    # attacks = [run_kasiski_attack]
     files = [
         "Two_Cities_Ch_1.txt",
         "Two_Towers_Ch_1.txt",
         "HHGTTG_Ch_1.txt",
+        "Jekyll_and_Hyde.txt",
         "Hobbit_Ch_1.txt",
         "Fellowship_Ch_1.txt",
-        "Return_of_the_King_Ch_1.txt"
+        "Return_of_the_King_Ch_1.txt",
+        "Tom_Sawyer.txt"
         # ,
         # "Alice.txt",
+        # "A_Room_With_A_View.txt",
         # "Frankenstein.txt",
         # "Sherlock_Holmes.txt",
         # "Dracula.txt",
