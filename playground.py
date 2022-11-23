@@ -1,4 +1,4 @@
-from Kasiski import _repeated_substring_distance, _get_factors
+from kasiski_examination import _repeated_substring_distance, _get_factors
 from main import read_file
 from helper_functions import vigenere
 from collections import Counter
