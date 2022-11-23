@@ -11,12 +11,12 @@ def vigenere(text, key, encrypt):
     """
     output = ""
     key_length = len(key)
-    for i in range(0, len(text)):
-        mod = i % key_length
-        shift = ord(key[mod])-97
+    for idx, char in enumerate(text):
+        mod = idx % key_length
+        shift = ord(key[mod]) - 97
         if not encrypt:
             shift = -shift
-        output += shift_char(text[i], shift)
+        output += shift_char(char, shift)
     return output
 
 # Splits a string into multiple substrings based on a provided number- num
@@ -36,9 +36,9 @@ def split(text, num):
     sub_strings = []
     for i in range(0, num):
         sub_strings.append("")
-    for i in range(0, len(text)):
-        mod = i % num
-        sub_strings[mod] += text[i]
+    for idx, char in enumerate(text):
+        mod = idx % num
+        sub_strings[mod] += char
     return sub_strings
 
 # Shifts a character based on a given shift
@@ -54,7 +54,7 @@ def shift_char(char, shift):
     val = ord(char)
     val += shift
     if val > 122:
-          val -= 26
+        val -= 26
     if val < 97:
         val +=26
     return chr(val)
