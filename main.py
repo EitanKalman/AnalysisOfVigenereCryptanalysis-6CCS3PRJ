@@ -5,7 +5,7 @@ from helper_functions import vigenere
 from ioc_analysis import run_ioc_attack
 from shifted_text_coincidence import run_shifted_text_attack
 from kasiski_examination import run_kasiski_attack
-from Key_Crack_From_Key_Length import get_key
+from calculate_key import get_key
 
 
 def read_file(file_to_open):
