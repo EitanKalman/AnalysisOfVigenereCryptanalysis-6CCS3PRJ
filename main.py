@@ -34,8 +34,9 @@ def time_attack(ciphertext, attack):
     """
     start_time = time.time()
     calculated_key_length = attack(ciphertext)
+    key = get_key(ciphertext, calculated_key_length)
     end_time = time.time()
-    print(calculated_key_length)
+    print(key)
     return end_time-start_time
 
 def calculate_average_time(ciphertexts, attack):
@@ -84,11 +85,11 @@ def main():
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
-    string = "keys lengths: "
-    for i in keys:
-        string += f"{len(i)}, "
-    print(string)
-    # print(keys)
+    # string = "keys lengths: "
+    # for i in keys:
+    #     string += f"{len(i)}, "
+    # print(string)
+    print(keys)
     attacks = [run_ioc_attack, run_shifted_text_attack, run_kasiski_attack]
     files = [
         "Two_Cities_Ch_1.txt",
@@ -97,14 +98,16 @@ def main():
         "Jekyll_and_Hyde.txt",
         "Hobbit_Ch_1.txt",
         "Fellowship_Ch_1.txt",
-        "Return_of_the_King_Ch_1.txt",
-        "Tom_Sawyer.txt",
-        "Alice.txt",
-        "A_Room_With_A_View.txt",
-        "Frankenstein.txt",
-        "Sherlock_Holmes.txt",
-        "Dracula.txt",
-        "Moby_Dick.txt"
+        "Return_of_the_King_Ch_1.txt"
+        ,
+        "Tom_Sawyer.txt"
+        # ,
+        # "Alice.txt",
+        # "A_Room_With_A_View.txt",
+        # "Frankenstein.txt",
+        # "Sherlock_Holmes.txt",
+        # "Dracula.txt",
+        # "Moby_Dick.txt"
         ]
     texts = []
     for file in files:
