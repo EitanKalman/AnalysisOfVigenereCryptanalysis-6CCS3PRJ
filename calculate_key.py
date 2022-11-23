@@ -1,3 +1,4 @@
+"""Calculate the key for a ciphertext given the key length"""
 from helper_functions import split, shift_char, frequency_analysis
 
 # Dictionary containing the frequencies of all letters in English
@@ -30,24 +31,15 @@ english_letter_frequencies = {
     'z':0.00074
 }
 
-# def frequency_analysis(text):
-#     frequencies = {}
-#     for char in text:
-#         if char in frequencies:
-#             frequencies[char] = frequencies[char] + 1
-#         else:
-#             frequencies[char] = 1
-#     return frequencies
-
 # Calculate the cumulative chi squared value for all characters in a given text
 def _chi_squared(letter_frequencies, text_length):
-    sum = 0
+    total = 0
     # This loop runs 26 times are there are always at most 26 key-value pairs
     for key, value in letter_frequencies.items():
         probability = english_letter_frequencies[key]
-        expectedCount = probability * text_length
-        sum += ((value - expectedCount)**2)/expectedCount
-    return sum
+        expected_count = probability * text_length
+        total += ((value - expected_count)**2)/expected_count
+    return total
 
 # Shifts all characters in a text left by the desired number of places
 def _shift_left(text, shift):
@@ -57,21 +49,28 @@ def _shift_left(text, shift):
         output += new_char
     return output
 
-# Calculates the key for a ciphertext given the key length
 def get_key(ciphertext, key_length):
+    """
+    Calculates the key for a ciphertext given the key length
+        Parameters:
+            ciphertext (string): The ciphertext
+            key_length (int): The length of the key
+        Return:
+            key (string): The calculated key
+    """
     # Split the ciphertext into key_length many sub-strings
     split_text = split(ciphertext, key_length)
     key = ""
     # This loop combines with the loop that will be performed in _shift_left to be O(n)
-    # as this loop runs k times (the number of elements in split_text- i.e. the key length),
-    # and each string being looped over there has n/k characters (where n is the length of the ciphertext)
+    # as this loop runs k times (the number of elements in split_text- i.e. the key length), and
+    # each string being looped over there has n/k chars (where n is the length of the ciphertext)
     for text in split_text:
         length = len(text)
         chi_values = []
         # For each possible shift calculate the cumulative chi squared value
         for i in range(0, 26):
-            shiftText = _shift_left(text, i)
-            frequencies = frequency_analysis(shiftText)
+            shift_text = _shift_left(text, i)
+            frequencies = frequency_analysis(shift_text)
             chi = _chi_squared(frequencies, length)
             chi_values.append(chi)
         # Find the index of the smallest chi square value- the shift
@@ -84,4 +83,3 @@ def get_key(ciphertext, key_length):
             shift_number +=26
         key += chr(shift_number)
     return key
-
