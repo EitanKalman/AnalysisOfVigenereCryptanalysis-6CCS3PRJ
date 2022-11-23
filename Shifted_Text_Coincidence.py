@@ -1,3 +1,4 @@
+"""Performs shifted text coincidence analysis"""
 from math import gcd
 from functools import reduce
 
@@ -6,8 +7,8 @@ from functools import reduce
 def _add_left_padding(text, num):
     return " "*num + text
 
-# Compares 2 texts (the original and a shifted version) to find how many coincidences there are between the 2 texts
-# Coincidences are defined as the same character at the same index 
+# Compares 2 texts (the original and a shifted version) to find how many coincidences there are
+# between the 2 texts. Coincidences are defined as the same character at the same index
 def _compare(text1, text2):
     coincidence = 0
     # for i in range(len(text1)):
@@ -19,6 +20,13 @@ def _compare(text1, text2):
     return coincidence
 
 def run_shifted_text_attack(ciphertext):
+    """
+    Calculates a probable key length using shifted text analysis
+        Parameters:
+            ciphertext (string): The ciphertext to be analysed
+        Returns:
+            likely_key_length (int): The likely length of the key
+    """
     texts = []
     # Created shifted versions of the ciphertext
     for i in range(3, 21):

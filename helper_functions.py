@@ -1,8 +1,14 @@
+"""Provides various functions used in the program"""
 from collections import Counter
 
-# Encrypt/ decrypt a message using the Vigenere cipher
-# Params: text- the message to be encrypted/ decrypted, key- the Vigenere key, encrypt- True when encrypting, false when decrypting 
 def vigenere(text, key, encrypt):
+    """
+    Encrypt/ decrypt a message using the Vigenere cipher
+        Paramaters:
+            text (string): the message to be encrypted/ decrypted
+            key (string): the key to be used
+            encrypt (boolean): True when encrypting, false when decrypting
+    """
     output = ""
     key_length = len(key)
     for i in range(0, len(text)):
@@ -17,16 +23,34 @@ def vigenere(text, key, encrypt):
 # Each substring is made up of every nth character.
 # i.e 1st substring is 1st, (n+1)th, (2n+1)th; 2nd substring is 2nd, (n+2)th, (2n+2)th etc
 def split(text, num):
-    subStrings = []
+    """
+    Splits a string into multiple substrings based on a provided number- num
+    Each substring is made up of every nth character.
+    i.e 1st substring is 1st, (n+1)th, (2n+1)th; 2nd substring is 2nd, (n+2)th, (2n+2)th etc
+        Parameters:
+            text (string): The text to be split
+            num (int): The number of sub-texts the text should be split in to
+        Returns:
+            sub_strings (list[string]): A list of strings, containing the splits
+    """
+    sub_strings = []
     for i in range(0, num):
-        subStrings.append("")
+        sub_strings.append("")
     for i in range(0, len(text)):
         mod = i % num
-        subStrings[mod] += text[i]
-    return subStrings
+        sub_strings[mod] += text[i]
+    return sub_strings
 
 # Shifts a character based on a given shift
 def shift_char(char, shift):
+    """
+    Shifts a character based on a given shift
+        Parameters:
+            char (char): The character to be shifted
+            shift (int): The number of places to shift
+        Returns:
+            char (char): The character resulting from the shift
+    """
     val = ord(char)
     val += shift
     if val > 122:
@@ -44,7 +68,13 @@ def shift_char(char, shift):
 #             frequencies[char] = 1
 #     return frequencies
 
-# Creates a Counter object that contains the frequency of all letters in a string
 def frequency_analysis(string):
+    """
+    Performs frequency analysis of a string
+        Parameters:
+            string (string): The string to be analysed
+        Returns:
+            counter (Counter): A Counter object that contains the frequencies of all letters
+    """
     letter_counter = Counter(string)
     return letter_counter
