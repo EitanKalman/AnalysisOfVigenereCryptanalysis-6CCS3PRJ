@@ -25,7 +25,7 @@ def read_file(file_to_open):
 
 def time_attack(ciphertext, attack):
     """
-    Times how long it takes a cryptographic algorithm takes on a given ciphertext
+    Times how long a cryptographic algorithm takes on a given ciphertext
     Parameters:
         ciphertext (string): The ciphertext to be cryptanalysed
         attack (function): The cryptanalysis algorithm to be used
