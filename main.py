@@ -90,7 +90,6 @@ def main():
     print(string)
     # print(keys)
     attacks = [run_ioc_attack, run_shifted_text_attack, run_kasiski_attack]
-    # attacks = [run_kasiski_attack]
     files = [
         "Two_Cities_Ch_1.txt",
         "Two_Towers_Ch_1.txt",
@@ -99,14 +98,13 @@ def main():
         "Hobbit_Ch_1.txt",
         "Fellowship_Ch_1.txt",
         "Return_of_the_King_Ch_1.txt",
-        "Tom_Sawyer.txt"
-        # ,
-        # "Alice.txt",
-        # "A_Room_With_A_View.txt",
-        # "Frankenstein.txt",
-        # "Sherlock_Holmes.txt",
-        # "Dracula.txt",
-        # "Moby_Dick.txt"
+        "Tom_Sawyer.txt",
+        "Alice.txt",
+        "A_Room_With_A_View.txt",
+        "Frankenstein.txt",
+        "Sherlock_Holmes.txt",
+        "Dracula.txt",
+        "Moby_Dick.txt"
         ]
     texts = []
     for file in files:
