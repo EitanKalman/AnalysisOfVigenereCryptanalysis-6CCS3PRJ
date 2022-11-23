@@ -19,9 +19,6 @@ def vigenere(text, key, encrypt):
         output += shift_char(char, shift)
     return output
 
-# Splits a string into multiple substrings based on a provided number- num
-# Each substring is made up of every nth character.
-# i.e 1st substring is 1st, (n+1)th, (2n+1)th; 2nd substring is 2nd, (n+2)th, (2n+2)th etc
 def split(text, num):
     """
     Splits a string into multiple substrings based on a provided number- num
@@ -41,7 +38,6 @@ def split(text, num):
         sub_strings[mod] += char
     return sub_strings
 
-# Shifts a character based on a given shift
 def shift_char(char, shift):
     """
     Shifts a character based on a given shift
