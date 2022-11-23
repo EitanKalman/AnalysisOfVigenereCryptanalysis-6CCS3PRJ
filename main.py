@@ -3,7 +3,7 @@ import time
 from random import randint
 from helper_functions import vigenere
 from ioc_examination import run_ioc_attack
-from Shifted_Text_Coincidence import run_shifted_text_attack
+from shifted_text_coincidence import run_shifted_text_attack
 from kasiski_examination import run_kasiski_attack
 from Key_Crack_From_Key_Length import get_key
 
