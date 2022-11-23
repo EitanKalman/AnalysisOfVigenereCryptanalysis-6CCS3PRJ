@@ -34,7 +34,7 @@ def split(text, num):
             sub_strings (list[string]): A list of strings, containing the splits
     """
     sub_strings = []
-    for i in range(0, num):
+    for _ in range(0, num):
         sub_strings.append("")
     for idx, char in enumerate(text):
         mod = idx % num

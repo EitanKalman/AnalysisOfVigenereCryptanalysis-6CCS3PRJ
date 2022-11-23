@@ -78,10 +78,10 @@ def calculate_average_time(ciphertexts, attack):
 def main():
     """The main method- entry point of the program"""
     keys = []
-    for i in range(0, 1):
+    for _ in range(0, 1):
         key_length = randint(3,20)
         key = ""
-        for i in range(0, key_length):
+        for _ in range(0, key_length):
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
