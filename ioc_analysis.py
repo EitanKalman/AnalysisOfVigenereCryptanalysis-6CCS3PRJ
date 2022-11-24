@@ -38,6 +38,6 @@ def run_ioc_attack(ciphertext):
         split_text = split(ciphertext, i)
         ioc_average = _calculate_ioc_average(split_text)
         # If this split has an ioc close to English, add it to possible key length candidates
-        if abs(ioc_average - 0.067) < 0.01:
+        if abs(ioc_average - 0.067) < 0.005:
             possible_ley_lengths.append(i)
     return reduce(gcd, possible_ley_lengths)
