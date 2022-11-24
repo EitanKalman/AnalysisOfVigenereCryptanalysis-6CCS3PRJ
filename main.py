@@ -35,9 +35,10 @@ def time_attack(ciphertext, attack):
     """
     start_time = time.time()
     calculated_key_length = attack(ciphertext)
+    mid_point = time.time()
     key = get_key(ciphertext, calculated_key_length)
     end_time = time.time()
-    return end_time-start_time, key
+    return mid_point-start_time, end_time-start_time, key
 
 def calculate_average_time(ciphertexts, attack):
     """
@@ -49,14 +50,17 @@ def calculate_average_time(ciphertexts, attack):
         average_time (float): The average time across all ciphertexts
         calculated_keys (list[string]): A list of the calculated keys for each ciphertext
     """
-    total_time = 0
+    total_time_partial = 0
+    total_time_full = 0
     calculated_keys = []
     for text in ciphertexts:
-        runtime, key = time_attack(text, attack)
-        total_time += runtime
+        partial_runtime, full_runtime, key = time_attack(text, attack)
+        total_time_partial += partial_runtime
+        total_time_full += full_runtime
         calculated_keys.append(key)
-    total_time /= len(ciphertexts)
-    return total_time, calculated_keys
+    total_time_partial /= len(ciphertexts)
+    total_time_full /= len(ciphertexts)
+    return total_time_partial, total_time_full, calculated_keys
 
 
 # def main_temp():
@@ -93,8 +97,10 @@ def main():
     # for i in keys:
     #     string += f"{len(i)}, "
     # print(string)
+    # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
     print(keys)
-    attacks = [run_ioc_attack, run_shifted_text_attack, run_kasiski_attack]
+    attacks = [run_ioc_attack]
+    # , run_shifted_text_attack, run_kasiski_attack]
     files = [
         "Two_Cities_Ch_1.txt",
         "Two_Towers_Ch_1.txt",
@@ -125,8 +131,8 @@ def main():
     for attack in attacks:
         for text in all_ciphertexts:
             char_count = len(text[0])
-            average_runtime, calculated_keys = calculate_average_time(text, attack)
-            print(f"{attack.__name__}, ciphertext length: {char_count}, time: {average_runtime}")
+            average_runtime_partial, average_runtime_full, calculated_keys = calculate_average_time(text, attack)
+            print(f"{attack.__name__}, ciphertext length: {char_count}, time without key: {average_runtime_partial}, time with key {average_runtime_full}")
             if calculated_keys != keys:
                 print("calculated keys aren't correct")
 
