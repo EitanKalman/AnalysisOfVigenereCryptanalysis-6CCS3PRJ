@@ -124,7 +124,9 @@ def main():
         ]
     plaintexts = []
     for file in files:
-        plaintexts.append(read_file(file))
+        plaintext = read_file(file)
+        if len(plaintext) > 0:
+            plaintexts.append(plaintext)
 
     # Generate the ciphertexts for all plaintexts with all keys
     all_ciphertexts = []
