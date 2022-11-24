@@ -40,6 +40,6 @@ def run_shifted_text_attack(ciphertext):
     # Filter out those shifts with the highest number of coincidences
     possible_key_lengths = []
     for idx, coincidence in enumerate(coincidences):
-        if coincidence>(len(ciphertext)/20):
+        if coincidence>(len(ciphertext)/18):
             possible_key_lengths.append(idx+3)
     return reduce(gcd, possible_key_lengths)

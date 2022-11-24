@@ -36,8 +36,7 @@ def time_attack(ciphertext, attack):
     calculated_key_length = attack(ciphertext)
     key = get_key(ciphertext, calculated_key_length)
     end_time = time.time()
-    print(key)
-    return end_time-start_time
+    return end_time-start_time, key
 
 def calculate_average_time(ciphertexts, attack):
     """
@@ -49,10 +48,13 @@ def calculate_average_time(ciphertexts, attack):
         average_time (float): The average time across all ciphertexts
     """
     total_time = 0
+    calculated_keys = []
     for text in ciphertexts:
-        total_time += time_attack(text, attack)
+        runtime, key = time_attack(text, attack)
+        total_time += runtime
+        calculated_keys.append(key)
     total_time /= len(ciphertexts)
-    return total_time
+    return total_time, calculated_keys
 
 
 # def main_temp():
@@ -78,7 +80,7 @@ def calculate_average_time(ciphertexts, attack):
 def main():
     """The main method- entry point of the program"""
     keys = []
-    for _ in range(0, 1):
+    for _ in range(0, 2):
         key_length = randint(3,20)
         key = ""
         for _ in range(0, key_length):
@@ -98,8 +100,7 @@ def main():
         "Jekyll_and_Hyde.txt",
         "Hobbit_Ch_1.txt",
         "Fellowship_Ch_1.txt",
-        "Return_of_the_King_Ch_1.txt"
-        ,
+        "Return_of_the_King_Ch_1.txt",
         "Tom_Sawyer.txt"
         # ,
         # "Alice.txt",
@@ -119,12 +120,13 @@ def main():
         for key in keys:
             ciphertexts.append(vigenere(text, key, True))
         all_ciphertexts.append(ciphertexts)
-
     for attack in attacks:
         for text in all_ciphertexts:
             char_count = len(text[0])
-            average_runtime = calculate_average_time(text, attack)
+            average_runtime, calculated_keys = calculate_average_time(text, attack)
             print(f"{attack.__name__}, ciphertext length: {char_count}, time: {average_runtime}")
+            if calculated_keys != keys:
+                print("calculated keys aren't correct")
 
 
 if __name__ == "__main__":
