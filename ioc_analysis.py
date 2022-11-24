@@ -23,7 +23,7 @@ def _calculate_ioc_average(split_ciphertext):
         total += index_of_coincidence
     return total/len(split_ciphertext)
 
-def run_ioc_attack(ciphertext):
+def run_ioc_analysis(ciphertext):
     """
     Calculates a probable key length using index of coincidence analysis
         Parameters:
@@ -40,4 +40,5 @@ def run_ioc_attack(ciphertext):
         # If this split has an ioc close to English, add it to possible key length candidates
         if abs(ioc_average - 0.067) < 0.005:
             possible_ley_lengths.append(i)
+    # Reduce the list of possible keys lengths to the greatest common divisor and return
     return reduce(gcd, possible_ley_lengths)

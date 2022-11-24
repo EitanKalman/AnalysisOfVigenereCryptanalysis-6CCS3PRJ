@@ -68,7 +68,7 @@ def _get_key_length(possible_key_lengths):
         lcm = lcm*i//gcd(lcm, i)
     return lcm
 
-def run_kasiski_attack(ciphertext):
+def run_kasiski_examination(ciphertext):
     """
     Perform Kasiski Examination
     Calculate the key length based on the factors of all the distances between repeated substrings

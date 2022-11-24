@@ -11,15 +11,12 @@ def _add_left_padding(text, num):
 # between the 2 texts. Coincidences are defined as the same character at the same index
 def _compare(text1, text2):
     coincidence = 0
-    # for i in range(len(text1)):
-    #     char1 = text1[i]
-    #     char2 = text2[i]
     for char1, char2 in zip(text1, text2):
         if char1 == char2:
             coincidence+=1
     return coincidence
 
-def run_shifted_text_attack(ciphertext):
+def run_shifted_text_analysis(ciphertext):
     """
     Calculates a probable key length using shifted text analysis
         Parameters:
@@ -42,4 +39,5 @@ def run_shifted_text_attack(ciphertext):
     for idx, coincidence in enumerate(coincidences):
         if coincidence>(len(ciphertext)/18):
             possible_key_lengths.append(idx+3)
+    # Reduce the list of possible keys lengths to the greatest common divisor and return
     return reduce(gcd, possible_key_lengths)
