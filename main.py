@@ -31,6 +31,7 @@ def time_attack(ciphertext, attack):
         attack (function): The cryptanalysis algorithm to be used
     Returns:
         time (float): The time it took for the algorithm to run
+        key (string): The calculated key for this ciphertext
     """
     start_time = time.time()
     calculated_key_length = attack(ciphertext)
@@ -46,6 +47,7 @@ def calculate_average_time(ciphertexts, attack):
         attack (function): The cryptanalysis algorithm to be used
     Returns:
         average_time (float): The average time across all ciphertexts
+        calculated_keys (list[string]): A list of the calculated keys for each ciphertext
     """
     total_time = 0
     calculated_keys = []
