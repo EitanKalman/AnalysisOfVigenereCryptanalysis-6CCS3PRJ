@@ -99,8 +99,7 @@ def main():
     # print(string)
     # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
     print(keys)
-    attacks = [run_ioc_attack]
-    # , run_shifted_text_attack, run_kasiski_attack]
+    attacks = [run_ioc_attack, run_shifted_text_attack, run_kasiski_attack]
     files = [
         "Two_Cities_Ch_1.txt",
         "Two_Towers_Ch_1.txt",
