@@ -8,10 +8,9 @@ def _calculate_text_ioc(text):
     length = len(text)
     # Get the frequency analysis for the text
     map_of_frequencies = frequency_analysis(text)
-    total = 0
+    ioc = 0
     for value in map_of_frequencies.values():
-        total = total + (value * (value-1))
-    ioc = total/(length*(length-1))
+        ioc = ioc + (value * (value-1))/(length*(length-1))
     return ioc
 
 # Calculate the index of coincides for a ciphertext that has been split into n parts by
