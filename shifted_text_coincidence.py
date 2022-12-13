@@ -24,20 +24,13 @@ def run_shifted_text_analysis(ciphertext):
         Returns:
             likely_key_length (int): The likely length of the key
     """
-    texts = []
+    possible_key_lengths = []
     # Created shifted versions of the ciphertext
     for i in range(3, 21):
         text = _add_left_padding(ciphertext, i)
-        texts.append(text)
-    coincidences = []
-    # Get the number of coincidences for each shifted version
-    for i in texts:
-        coincidence = _compare(ciphertext, i)
-        coincidences.append(coincidence)
-    # Filter out those shifts with the highest number of coincidences
-    possible_key_lengths = []
-    for idx, coincidence in enumerate(coincidences):
+        # Get the number of coincidences for this shifted version
+        coincidence = _compare(ciphertext, text)
+        # If the number of coincidences is above the threshold include it as a possible key length
         if coincidence>(len(ciphertext)/18):
-            possible_key_lengths.append(idx+3)
-    # Reduce the list of possible keys lengths to the greatest common divisor and return
+            possible_key_lengths.append(i)
     return reduce(gcd, possible_key_lengths)
