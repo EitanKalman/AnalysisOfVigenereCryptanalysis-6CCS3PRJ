@@ -1,5 +1,5 @@
 """Main- the start point of the program"""
-import time
+from time import perf_counter
 from random import randint
 from helper_functions import vigenere
 from ioc_analysis import run_ioc_analysis
@@ -34,11 +34,11 @@ def time_attack(ciphertext, attack):
         time (float): The time is took for the algorithm and key calculation to run
         key (string): The calculated key for this ciphertext
     """
-    start_time = time.time()
+    start_time = perf_counter()
     calculated_key_length = attack(ciphertext)
-    mid_point = time.time()
+    mid_point = perf_counter()
     key = get_key(ciphertext, calculated_key_length)
-    end_time = time.time()
+    end_time = perf_counter()
     return mid_point-start_time, end_time-start_time, key
 
 def calc_average_time(ciphertexts, attack):
