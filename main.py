@@ -2,7 +2,7 @@
 from time import perf_counter
 from random import randint
 from os import listdir
-import re
+from re import compile as regex_compile
 from helper_functions import vigenere
 from ioc_analysis import run_ioc_analysis
 from shifted_text_coincidence import run_shifted_text_analysis
@@ -22,8 +22,8 @@ def read_file(file_to_open):
         with open(f"texts/{file_to_open}", 'r', encoding="utf-8") as file:
             text = file.read()
             text = text.lower() 
-            r = re.compile('[^a-z]')
-            text = r.sub("", text)
+            reg = regex_compile('[^a-z]')
+            text = reg.sub("", text)
             return text
     except FileNotFoundError:
         return ""
