@@ -1,6 +1,7 @@
 """Main- the start point of the program"""
 from time import perf_counter
 from random import randint
+from os import listdir
 import re
 from helper_functions import vigenere
 from ioc_analysis import run_ioc_analysis
@@ -109,25 +110,10 @@ def main():
     # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
     print(keys)
     algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
-    files = [
-        "Two_Cities_Ch_1.txt",
-        "Two_Towers_Ch_1.txt",
-        "HHGTTG_Ch_1.txt",
-        "Jekyll_and_Hyde.txt",
-        "Hobbit_Ch_1.txt",
-        "Fellowship_Ch_1.txt",
-        "Return_of_the_King_Ch_1.txt",
-        "Tom_Sawyer.txt"
-        # ,
-        # "Alice.txt",
-        # "A_Room_With_A_View.txt",
-        # "Frankenstein.txt",
-        # "Sherlock_Holmes.txt",
-        # "Dracula.txt",
-        # "Moby_Dick.txt"
-        ]
+    all_files = listdir("texts/")
+    txt_files = list(filter(lambda x: x[-4:] == '.txt', all_files))
     plaintexts = []
-    for file in files:
+    for file in txt_files:
         plaintext = read_file(file)
         if len(plaintext) > 0:
             plaintexts.append(plaintext)
