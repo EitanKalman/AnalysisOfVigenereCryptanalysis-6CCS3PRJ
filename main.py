@@ -1,6 +1,7 @@
 """Main- the start point of the program"""
 from time import perf_counter
 from random import randint
+import re
 from helper_functions import vigenere
 from ioc_analysis import run_ioc_analysis
 from shifted_text_coincidence import run_shifted_text_analysis
@@ -19,6 +20,9 @@ def read_file(file_to_open):
     try:
         with open(f"texts/{file_to_open}", 'r', encoding="utf-8") as file:
             text = file.read()
+            text = text.lower() 
+            r = re.compile('[^a-z]')
+            text = r.sub("", text)
             return text
     except FileNotFoundError:
         return ""
