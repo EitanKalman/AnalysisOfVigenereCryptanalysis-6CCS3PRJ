@@ -55,15 +55,6 @@ def shift_char(char, shift):
         val +=26
     return chr(val)
 
-# def frequency_analysis(text):
-#     frequencies = {}
-#     for char in text:
-#         if char in frequencies:
-#             frequencies[char] = frequencies[char] + 1
-#         else:
-#             frequencies[char] = 1
-#     return frequencies
-
 def frequency_analysis(string):
     """
     Performs frequency analysis of a string

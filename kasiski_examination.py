@@ -2,18 +2,6 @@
 from math import gcd
 from collections import Counter
 
-# Get distances between repeated substrings of length 3
-# OLD VERSION- takes over 3 mins on laptop
-def _repeated_substring_distance_old(text):
-    distances = []	# Used to store the distances between repeated substrings of length 3
-    for i in range(0, len(text)-2): # Loop over the text
-        sub_string = text[i:i+3]	#Get substring of length 3 starting at index i
-        for j in range(i+1, len(text)-2):	#Loop over the remaining text
-            if text[j:j+3] == sub_string:	#If the substring of length 3 starting at j matches the current substring
-                distances.append(j-i)	#Add the distance between the starting positions to the list
-    return distances
-
-
 def _repeated_substring_distance(text):
     # Create a dictionary with 3grams as keys and a list of starting indices of the 3-gram as values
     threegram_indices = {}
@@ -29,10 +17,10 @@ def _repeated_substring_distance(text):
     # is the number of unique 3-grams), where the values are lists of numbers. Each list has on
     # average n/y elements, and the total number of elements in all lists is n.
     # The 3rd loop is O(n) as it's linear in n
-    for indexes in threegram_indices.values():
-        for i in range(len(indexes)-1):
-            for j in range(i+1, len(indexes)):
-                distances.append(indexes[j]-indexes[i])
+    for indices in threegram_indices.values():
+        for i in range(len(indices)-1):
+            for j in range(i+1, len(indices)):
+                distances.append(indices[j]-indices[i])
     return distances
 
 # Get all the factors of a number
