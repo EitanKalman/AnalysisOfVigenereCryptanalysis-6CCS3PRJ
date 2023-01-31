@@ -72,27 +72,6 @@ def calc_average_time(ciphertexts, attack):
     total_time_key /= len(ciphertexts)
     return total_time, total_time_key, calculated_keys
 
-
-# def main_temp():
-#     key_length = randint(3,20)
-#     key = ""
-#     for i in range(0, key_length):
-#         val = randint(97, 122)
-#         key +=chr(val)
-#     key = "oxhagi"
-#     print(key, len(key))
-#     plaintext = read_file("Dracula.txt")
-#     # plaintext = read_file("Two_Towers_Ch_1.txt")
-#     # plaintext = read_file("Return_of_the_King_Ch_1.txt")
-#     # plaintext = read_file("Hobbit_Ch_1.txt")
-
-#     ciphertext = vigenere(plaintext, key, True)
-
-#     start_time = time.time()
-#     run_ioc_attack(ciphertext)
-#     end_time = time.time()
-#     print(f"time: {end_time-start_time}")
-
 def main():
     """The main method- entry point of the program"""
     keys = []
@@ -103,12 +82,8 @@ def main():
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
-    # string = "keys lengths: "
-    # for i in keys:
-    #     string += f"{len(i)}, "
-    # print(string)
     # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
-    print(keys)
+
     algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
     all_files = listdir("texts/")
     txt_files = list(filter(lambda x: x[-4:] == '.txt', all_files))
@@ -118,7 +93,7 @@ def main():
         if len(plaintext) > 0:
             plaintexts.append(plaintext)
     plaintexts.sort(key = len)
-    
+
     # Generate the ciphertexts for all plaintexts with all keys
     all_ciphertexts = []
     for text in plaintexts:
