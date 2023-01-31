@@ -117,7 +117,8 @@ def main():
         plaintext = read_file(file)
         if len(plaintext) > 0:
             plaintexts.append(plaintext)
-
+    plaintexts.sort(key = len)
+    
     # Generate the ciphertexts for all plaintexts with all keys
     all_ciphertexts = []
     for text in plaintexts:
@@ -127,8 +128,8 @@ def main():
             ciphertexts.append(vigenere(text, key, True))
         all_ciphertexts.append(ciphertexts)
     # Run all algorithms on all plaintexts and print the average time
-    for algo in algorithms:
-        for text in all_ciphertexts:
+    for text in all_ciphertexts:
+        for algo in algorithms:
             char_count = len(text[0])
             average_runtime, average_runtime_key, calc_keys = calc_average_time(text, algo)
             print(f"{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime}, time w/ key:{average_runtime_key}")
