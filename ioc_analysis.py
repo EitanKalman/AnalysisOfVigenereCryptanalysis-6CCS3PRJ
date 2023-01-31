@@ -13,7 +13,7 @@ def _calculate_text_ioc(text):
         ioc = ioc + (value * (value-1))/(length*(length-1))
     return ioc
 
-# Calculate the index of coincides for a ciphertext that has been split into n parts by
+# Calculate the index of coincidence for a ciphertext that has been split into n parts by
 # calculating the index of coincidence for each part and then averaging
 def _calculate_ioc_average(split_ciphertext):
     total = 0
