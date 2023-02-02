@@ -12,11 +12,6 @@ def _repeated_substring_distance(text):
         else:
             threegram_indices[sub_string]=[i]
     distances = []
-    # This triple nested for loop is only O(n*2) due to groupings
-    # The first 2 loops combine to O(n) as there are y key-value pairs in the dictionary (where y
-    # is the number of unique 3-grams), where the values are lists of numbers. Each list has on
-    # average n/y elements, and the total number of elements in all lists is n.
-    # The 3rd loop is O(n) as it's linear in n
     for indices in threegram_indices.values():
         for i in range(len(indices)-1):
             for j in range(i+1, len(indices)):
