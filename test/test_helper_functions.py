@@ -1,5 +1,37 @@
 from unittest import TestCase
-from src.helper_functions import shift_char, frequency_analysis
+from src.helper_functions import split, shift_char, frequency_analysis
+
+class TestSplit(TestCase):
+
+    def setUp(self):
+        self.valid_string = "teststring"
+
+    def test_non_empty_string_with_non_zero_split(self):
+        split_text = split(self.valid_string, 2)
+        self.assertEqual(len(split_text), 2)
+        self.assertEqual(split_text[0], "tssrn")
+        self.assertEqual(split_text[1], "ettig")
+
+    def test_non_empty_string_with_one_split(self):
+        split_text = split(self.valid_string, 1)
+        self.assertEqual(len(split_text), 1)
+        self.assertEqual(split_text[0], "teststring")
+
+    def test_non_empty_string_with_zero_split(self):
+        split_text = split(self.valid_string, 0)
+        self.assertEqual(len(split_text), 0)
+        self.assertEqual(split_text, [])
+
+    def test_empty_string_with_non_zero_split(self):
+        split_text = split("", 2)
+        self.assertEqual(len(split_text), 2)
+        self.assertEqual(split_text[0], "")
+        self.assertEqual(split_text[1], "")
+
+    def test_empty_string_with_zero_split(self):
+        split_text = split("", 0)
+        self.assertEqual(len(split_text), 0)
+        self.assertEqual(split_text, [])
 
 
 class TestShiftChar(TestCase):
