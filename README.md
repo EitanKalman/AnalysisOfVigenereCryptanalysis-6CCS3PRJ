@@ -5,7 +5,12 @@ Project title: Algorithmic Analysis of Cryptanalysis of the Vigenère Cipher
 
 Sample plaintexts are provided as .txt files in the text directory
 
-Run the analysis program with:
+Run the program with:
 ```
-$ py main.py
+$ python src/main.py
+```
+
+Run all tests with:
+```
+$ python -m unittest
 ```
