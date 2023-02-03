@@ -33,7 +33,7 @@ def split(text, num):
     sub_strings = []
     for _ in range(0, num):
         sub_strings.append("")
-    if num != 0:
+    if num > 0:
         for idx, char in enumerate(text):
             mod = idx % num
             sub_strings[mod] += char
