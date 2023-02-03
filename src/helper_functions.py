@@ -49,9 +49,9 @@ def shift_char(char, shift):
     """
     val = ord(char)
     val += shift
-    if val > 122:
+    while val > 122:
         val -= 26
-    if val < 97:
+    while val < 97:
         val +=26
     return chr(val)
 
