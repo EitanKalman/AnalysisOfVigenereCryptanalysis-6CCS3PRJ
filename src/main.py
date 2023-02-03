@@ -4,9 +4,9 @@ from random import randint
 from os import listdir
 from re import compile as regex_compile
 from helper_functions import vigenere
-from ioc_analysis import run_ioc_analysis
-from shifted_text_coincidence import run_shifted_text_analysis
-from kasiski_examination import run_kasiski_examination
+from analysis_algorithms.ioc_analysis import run_ioc_analysis
+from analysis_algorithms.shifted_text_coincidence import run_shifted_text_analysis
+from analysis_algorithms.kasiski_examination import run_kasiski_examination
 from calculate_key import get_key
 
 
