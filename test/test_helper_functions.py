@@ -38,6 +38,11 @@ class TestSplit(TestCase):
         self.assertEqual(len(split_text), 0)
         self.assertEqual(split_text, [])
 
+    def test_empty_string_with_negative_split(self):
+        split_text = split("", -2)
+        self.assertEqual(len(split_text), 0)
+        self.assertEqual(split_text, [])
+
 
 class TestShiftChar(TestCase):
 
