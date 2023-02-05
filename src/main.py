@@ -75,8 +75,7 @@ def calc_average_time(ciphertexts, attack):
     total_time_full /= len(ciphertexts)
     return total_time, total_time_key, total_time_full, calculated_keys
 
-def main():
-    """The main method- entry point of the program"""
+def _generate_keys():
     keys = []
     for _ in range(0, 2):
         key_length = randint(3,20)
@@ -85,9 +84,9 @@ def main():
             val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
-    # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
-    print(keys)
-    algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
+    return keys
+
+def _load_plaintexts():
     all_files = listdir("texts/")
     txt_files = list(filter(lambda x: x[-4:] == '.txt', all_files))
     plaintexts = []
@@ -96,8 +95,9 @@ def main():
         if len(plaintext) > 0:
             plaintexts.append(plaintext)
     plaintexts.sort(key = len)
+    return plaintexts
 
-    # Generate the ciphertexts for all plaintexts with all keys
+def _generate_ciphertexts(plaintexts, keys):
     all_ciphertexts = []
     for text in plaintexts:
         # For 1 plaintext, generate ciphertexts for all keys
@@ -105,6 +105,18 @@ def main():
         for key in keys:
             ciphertexts.append(vigenere(text, key, True))
         all_ciphertexts.append(ciphertexts)
+    return all_ciphertexts
+
+def main():
+    """The main method- entry point of the program"""
+    keys = _generate_keys()
+    # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
+    print(keys)
+    plaintexts = _load_plaintexts()
+    all_ciphertexts = _generate_ciphertexts(plaintexts, keys)
+
+    algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
+
     # Run all algorithms on all plaintexts and print the average time
     for algo in algorithms:
         for text in all_ciphertexts:
