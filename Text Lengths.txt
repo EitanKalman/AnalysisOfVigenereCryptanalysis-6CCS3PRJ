@@ -1,15 +1,15 @@
-Two_Cities:		4627
+Two_Cities:		    4627
 Little_Women:		16851
 Jekyll_and_Hyde:	25385
 Time_Machine:		31274
 Dorian_Grey:		43749
-Emma:			52333
+Emma:			    52333
 Great_Expectations:	60363
+Room:			    75070
 Tom_Sawyer: 		88713
-Alice:			107667
-Room:			287028
-Frankenstein:		332135
-Sherlock_Holmes:	431087
-Dracula:		640817
-Jane Eyre:		783453
-Moby Dick:		935605
+Frankenstein:		95371
+Alice:			    107667
+Sherlock_Holmes:	114782
+Dracula:		    125000
+Jane Eyre:		    135000
+Moby Dick:		    145000
