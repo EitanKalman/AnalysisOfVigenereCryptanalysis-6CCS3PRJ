@@ -77,7 +77,7 @@ def calc_average_time(ciphertexts, attack):
 
 def _generate_keys():
     keys = []
-    for _ in range(0, 2):
+    for _ in range(0, 10):
         key_length = randint(3,20)
         key = ""
         for _ in range(0, key_length):
