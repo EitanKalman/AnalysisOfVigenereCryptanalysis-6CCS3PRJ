@@ -23,8 +23,8 @@ class TestCalculateKey(TestCase):
 
     def test_shift_left_with_non_empty_text_with_zero_shift(self):
         """Test shift_left function with non empty string without spaces with a shift of zero"""
-        with self.assertRaises(ValueError):
-            calculate_key._shift_left(self.string_without_spaces, -2)
+        shifted_text = calculate_key._shift_left(self.string_without_spaces, 0)
+        self.assertEqual(shifted_text, self.string_without_spaces)
 
     def test_shift_left_with_non_empty_text_with_negative_shift(self):
         """Test shift_left function with non empty string without spaces with a negative shift"""

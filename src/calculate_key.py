@@ -47,8 +47,8 @@ def _chi_squared(letter_frequencies, text_length):
 
 # Shifts all characters in a text left by the desired number of places
 def _shift_left(text, shift):
-    if shift < 1:
-        raise ValueError("shift must be greater than 0")
+    if shift < 0:
+        raise ValueError("shift must be greater than -1")
     output = ""
     for char in text:
         new_char = shift_char(char, -shift)
