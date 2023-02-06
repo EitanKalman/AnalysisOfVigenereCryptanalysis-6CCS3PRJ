@@ -45,6 +45,8 @@ def split(text, num):
         raise ValueError("num must be greater than 0")
     if not isinstance(num, int):
         raise TypeError("num must be an integer")
+    text = text.lower()
+    text = text.replace(" ", "")
     sub_strings = []
     for _ in range(0, num):
         sub_strings.append("")
