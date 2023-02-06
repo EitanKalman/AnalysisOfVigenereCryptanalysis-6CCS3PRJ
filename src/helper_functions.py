@@ -74,11 +74,22 @@ def shift_char(char, shift):
     char = char.lower()
     val = ord(char)
     val += shift
-    while val > 122:
-        val -= 26
-    while val < 97:
-        val +=26
+    val = normalise(val)
     return chr(val)
+
+def normalise(num):
+    """
+    Keeps a number between 97 and 122 (the ascii values for 'a' and 'z')
+        Parameters:
+            num (int): An integer number
+        Returns:
+            num (int): The number once normalised
+    """
+    while num > 122:
+        num -= 26
+    while num < 97:
+        num +=26
+    return num
 
 def frequency_analysis(string):
     """

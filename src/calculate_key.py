@@ -1,8 +1,8 @@
 """Calculate the key for a ciphertext given the key length"""
 try:
-    from helper_functions import split, shift_char, frequency_analysis
+    from helper_functions import split, shift_char, frequency_analysis, normalise
 except ModuleNotFoundError:
-    from src.helper_functions import split, shift_char, frequency_analysis
+    from src.helper_functions import split, shift_char, frequency_analysis, normalise
 
 
 # Dictionary containing the frequencies of all letters in English
@@ -83,9 +83,6 @@ def get_key(ciphertext, key_length):
         shift_number = chi_values.index(min(chi_values))
         # Convert the shift to a letter based using ascii
         shift_number = 97 + shift_number
-        if shift_number > 122:
-            shift_number -= 26
-        if shift_number < 97:
-            shift_number +=26
+        shift_number = normalise(shift_number)
         key += chr(shift_number)
     return key
