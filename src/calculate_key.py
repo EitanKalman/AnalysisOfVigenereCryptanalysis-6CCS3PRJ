@@ -1,5 +1,9 @@
 """Calculate the key for a ciphertext given the key length"""
-from helper_functions import split, shift_char, frequency_analysis
+try:
+    from helper_functions import split, shift_char, frequency_analysis
+except ModuleNotFoundError:
+    from src.helper_functions import split, shift_char, frequency_analysis
+
 
 # Dictionary containing the frequencies of all letters in English
 english_letter_frequencies = {
@@ -43,6 +47,8 @@ def _chi_squared(letter_frequencies, text_length):
 
 # Shifts all characters in a text left by the desired number of places
 def _shift_left(text, shift):
+    if shift < 1:
+        raise ValueError("shift must be greater than 0")
     output = ""
     for char in text:
         new_char = shift_char(char, -shift)
