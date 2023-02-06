@@ -5,6 +5,8 @@ from functools import reduce
 # Pads the input string with the desired number of spaces on the left
 # Effectively shifts the input string left by n spaces
 def _add_left_padding(text, num):
+    if num < 0:
+        raise ValueError("num must be greater than 0")
     return " "*num + text
 
 # Compares 2 texts (the original and a shifted version) to find how many coincidences there are
