@@ -1,11 +1,11 @@
 """Performs index of coincidence analysis on split ciphertext to calculate the key length"""
 from collections import Counter
 from math import gcd
-from functools import reduce
 try:
     from helper_functions import split
 except ModuleNotFoundError:
     from src.helper_functions import split
+
 
 # Calculates the Index of Coincidence for a given text
 def _calculate_text_ioc(text):
@@ -45,4 +45,4 @@ def run_ioc_analysis(ciphertext):
         if abs(ioc_average - 0.065) < 0.005:
             possible_ley_lengths.append(i)
     # Reduce the list of possible keys lengths to the greatest common divisor and return
-    return reduce(gcd, possible_ley_lengths)
+    return gcd(*possible_ley_lengths)
