@@ -23,13 +23,14 @@ def _get_factors(num):
     factors = []
     for i in range(2, int(num**0.5)+1):
         if num % i == 0:
-            # factors.append(i)
-            # factors.append(number/i)
+            # Add the factors to the list
             factors.extend([i, num//i])
     return factors
 
 #Calculate the key length based on the factors of all the distances between repeated substrings
 def _get_possible_key_length(distances):
+    if len(distances) == 0:
+        raise ValueError
     frequencies = Counter()
     # Loop over the distances between the repeated 3grams and calculate factors- likely key lengths
     for i in distances:
@@ -46,6 +47,8 @@ def _get_possible_key_length(distances):
 
 # Get the length of the key by finding the lowest common multiple of all possible key lengths
 def _get_key_length(possible_key_lengths):
+    if len(possible_key_lengths) == 0:
+        raise ValueError
     lcm = 1
     for i in possible_key_lengths:
         lcm = lcm*i//gcd(lcm, i)
