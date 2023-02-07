@@ -109,11 +109,14 @@ def _generate_ciphertexts(plaintexts, keys):
 
 def main():
     """The main method- entry point of the program"""
+    print("Generating keys")
     keys = _generate_keys()
-    # keys = ['otubemzyhpyijnnr', 'qqrhcdrw']
-    print(keys)
+    print(f"keys are: {keys}")
+    print("Loading plaintexts")
     plaintexts = _load_plaintexts()
+    print("Generating ciphertexts")
     all_ciphertexts = _generate_ciphertexts(plaintexts, keys)
+    print("Ciphertexts Generated \nRunning cryptanalysis algorithms")
 
     algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
 
