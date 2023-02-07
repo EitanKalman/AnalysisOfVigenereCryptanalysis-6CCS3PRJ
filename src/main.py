@@ -21,7 +21,7 @@ def read_file(file_to_open):
     try:
         with open(f"texts/{file_to_open}", 'r', encoding="utf-8") as file:
             text = file.read()
-            text = text.lower() 
+            text = text.lower()
             reg = regex_compile('[^a-z]')
             text = reg.sub("", text)
             return text

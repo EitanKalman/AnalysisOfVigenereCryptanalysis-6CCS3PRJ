@@ -76,12 +76,12 @@ class TestShiftCharFunctions(TestCase):
         self.assertEqual(new_char, 'f')
 
     def test_shift_char_uppercase_lower_boundary_char_with_negative_shift(self):
-        """Test shift_char function with a lower boundary uppercase character with a negative shift"""
+        """Test shift_char function with a lower-bound uppercase character with a negative shift"""
         new_char = helper_functions.shift_char('A', -1)
         self.assertEqual(new_char, 'z')
 
     def test_shift_char_uppercase_upper_boundary_char_with_negative_shift(self):
-        """Test shift_char function with an upper boundary uppercase character with a negative shift"""
+        """Test shift_char function with a upper-bound uppercase character with a negative shift"""
         new_char = helper_functions.shift_char('Z', -1)
         self.assertEqual(new_char, 'y')
 
