@@ -1,6 +1,4 @@
 """Provides various functions used in the program"""
-from collections import Counter
-
 def vigenere(text, key, encrypt):
     """
     Encrypt/ decrypt a message using the Vigenere cipher
