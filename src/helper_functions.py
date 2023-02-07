@@ -1,14 +1,18 @@
 """Provides various functions used in the program"""
-from collections import Counter
-
 def vigenere(text, key, encrypt):
     """
     Encrypt/ decrypt a message using the Vigenere cipher
-        Paramaters:
-            text (string): the message to be encrypted/ decrypted
-            key (string): the key to be used
-            encrypt (boolean): True when encrypting, false when decrypting
+        Parameters:
+            text (string): The message to be encrypted/ decrypted
+            key (string): The key to be used
+            encrypt (boolean): True when encrypting, False when decrypting
+        Returns:
+            text (string): The encrypted/ decrypted message
+        Raises:
+            AssertionError: If text or key contain characters that aren't letters
     """
+    key = key.lower()
+    assert key.isalpha()
     output = ""
     key_length = len(key)
     for idx, char in enumerate(text):
@@ -29,40 +33,55 @@ def split(text, num):
             num (int): The number of sub-texts the text should be split in to
         Returns:
             sub_strings (list[string]): A list of strings, containing the splits
+        Raises:
+            ValueError: If num isn't greater than 0
+            TypeError: If num isn't an integer
     """
+    if num < 1:
+        raise ValueError("num must be greater than 0")
+    if not isinstance(num, int):
+        raise TypeError("num must be an integer")
+    text = text.lower()
     sub_strings = []
     for _ in range(0, num):
         sub_strings.append("")
-    if num > 0:
-        for idx, char in enumerate(text):
-            mod = idx % num
-            sub_strings[mod] += char
+    for idx, char in enumerate(text):
+        mod = idx % num
+        sub_strings[mod] += char
     return sub_strings
 
 def shift_char(char, shift):
     """
     Shifts a character based on a given shift
         Parameters:
-            char (char): The character to be shifted
+            char (char): The character to be shifted (will be converted to lowercase)
             shift (int): The number of places to shift
         Returns:
             char (char): The character resulting from the shift
+        Raises:
+            TypeError: If shift isn't an integer
+            AssertionError: If char isn't a letter character
+            TypeError: If char isn't a single character
     """
+    assert char.isalpha()
+    if len(char) != 1:
+        raise TypeError("char must be a single character")
+    char = char.lower()
     val = ord(char)
     val += shift
-    while val > 122:
-        val -= 26
-    while val < 97:
-        val +=26
+    val = normalise(val)
     return chr(val)
 
-def frequency_analysis(string):
+def normalise(num):
     """
-    Performs frequency analysis of a string
+    Keeps a number between 97 and 122 (the ascii values for 'a' and 'z')
         Parameters:
-            string (string): The string to be analysed
+            num (int): An integer number
         Returns:
-            counter (Counter): A Counter object that contains the frequencies of all letters
+            num (int): The number once normalised
     """
-    letter_counter = Counter(string)
-    return letter_counter
+    while num > 122:
+        num -= 26
+    while num < 97:
+        num +=26
+    return num
