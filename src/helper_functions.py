@@ -1,6 +1,4 @@
 """Provides various functions used in the program"""
-from collections import Counter
-
 def vigenere(text, key, encrypt):
     """
     Encrypt/ decrypt a message using the Vigenere cipher
@@ -13,8 +11,6 @@ def vigenere(text, key, encrypt):
         Raises:
             AssertionError: If text or key contain characters that aren't letters
     """
-    text = text.replace(" ", "")
-    key = key.replace(" ", "")
     key = key.lower()
     assert key.isalpha()
     output = ""
@@ -46,7 +42,6 @@ def split(text, num):
     if not isinstance(num, int):
         raise TypeError("num must be an integer")
     text = text.lower()
-    text = text.replace(" ", "")
     sub_strings = []
     for _ in range(0, num):
         sub_strings.append("")
@@ -90,16 +85,3 @@ def normalise(num):
     while num < 97:
         num +=26
     return num
-
-def frequency_analysis(string):
-    """
-    Performs frequency analysis of a string
-        Parameters:
-            string (string): The string to be analysed (will be converted to lowercase)
-        Returns:
-            counter (Counter): A Counter object that contains the frequencies of all letters
-    """
-    string = string.lower()
-    string = string.replace(" ", "")
-    letter_counter = Counter(string)
-    return letter_counter

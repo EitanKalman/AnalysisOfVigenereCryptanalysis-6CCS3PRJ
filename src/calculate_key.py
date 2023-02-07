@@ -1,8 +1,11 @@
 """Calculate the key for a ciphertext given the key length"""
+from collections import Counter
+
+
 try:
-    from helper_functions import split, shift_char, frequency_analysis, normalise
+    from helper_functions import split, shift_char, normalise
 except ModuleNotFoundError:
-    from src.helper_functions import split, shift_char, frequency_analysis, normalise
+    from src.helper_functions import split, shift_char, normalise
 
 
 # Dictionary containing the frequencies of all letters in English
@@ -76,7 +79,7 @@ def get_key(ciphertext, key_length):
         # For each possible shift calculate the cumulative chi squared value
         for i in range(0, 26):
             shift_text = _shift_left(text, i)
-            frequencies = frequency_analysis(shift_text)
+            frequencies = Counter(shift_text)
             chi = _chi_squared(frequencies, length)
             chi_values.append(chi)
         # Find the index of the smallest chi square value- the shift

@@ -1,17 +1,18 @@
 """Performs index of coincidence analysis on split ciphertext to calculate the key length"""
+from collections import Counter
 from math import gcd
 from functools import reduce
 try:
-    from helper_functions import split, frequency_analysis
+    from helper_functions import split
 except ModuleNotFoundError:
-    from src.helper_functions import split, frequency_analysis
+    from src.helper_functions import split
 
 # Calculates the Index of Coincidence for a given text
 def _calculate_text_ioc(text):
-    text = text.replace(" ", "")
+    text = text.lower()
     length = len(text)
     # Get the frequency analysis for the text
-    map_of_frequencies = frequency_analysis(text)
+    map_of_frequencies = Counter(text)
     ioc = 0
     for value in map_of_frequencies.values():
         ioc = ioc + (value * (value-1))/(length*(length-1))

@@ -6,41 +6,40 @@ class TestSplitFunctions(TestCase):
     """Unit tests for split function"""
 
     def setUp(self):
-        self.string_without_spaces = "thisisasamplestring"
-        # self.string_with_spaces = "this is a sample string"   -----------> need to add test cases for this
+        self.string = "thisisasamplestring"
 
     def test_split_non_empty_string_with_non_zero_split(self):
-        """Test split function with a non-empty string without spaces with a positive non-zero split"""
-        split_text = split(self.string_without_spaces, 2)
+        """Test split function with a non-empty string  with a positive non-zero split"""
+        split_text = split(self.string, 2)
         self.assertEqual(len(split_text), 2)
         self.assertEqual(split_text[0], "tiiaapetig")
         self.assertEqual(split_text[1], "hsssmlsrn")
 
     def test_split_non_empty_string_with_one_split(self):
-        """Test split function with a non-empty string without spaces with a split of one"""
-        split_text = split(self.string_without_spaces, 1)
+        """Test split function with a non-empty string with a split of one"""
+        split_text = split(self.string, 1)
         self.assertEqual(len(split_text), 1)
-        self.assertEqual(split_text[0], self.string_without_spaces)
+        self.assertEqual(split_text[0], self.string)
 
     def test_split_non_empty_string_with_zero_split(self):
-        """Test split function with a non-empty string without spaces with a split of zero"""
+        """Test split function with a non-empty string with a split of zero"""
         with self.assertRaises(ValueError):
-            split(self.string_without_spaces, 0)
+            split(self.string, 0)
 
     def test_split_non_empty_string_with_negative_split(self):
-        """Test split function with a non-empty string without spaces with a negative split"""
+        """Test split function with a non-empty string with a negative split"""
         with self.assertRaises(ValueError):
-            split(self.string_without_spaces, -2)
+            split(self.string, -2)
 
     def test_split_non_empty_string_with_positive_fraction_split(self):
-        """Test split function with a non-empty string without spaces with a positive fractional split"""
+        """Test split function with a non-empty string with a positive fractional split"""
         with self.assertRaises(TypeError):
-            split(self.string_without_spaces, 2.5)
+            split(self.string, 2.5)
 
     def test_split_non_empty_string_with_negative_fraction_split(self):
-        """Test split function with a non-empty string without spaces with a positive fractional split"""
+        """Test split function with a non-empty string with a positive fractional split"""
         with self.assertRaises(ValueError):
-            split(self.string_without_spaces, -2.5)
+            split(self.string, -2.5)
 
     def test_split_empty_string_with_non_zero_split(self):
         """Test split function with an empty string with a positive non-zero split"""
@@ -77,7 +76,7 @@ class TestSplitFunctions(TestCase):
 
     def test_split_with_uppercase_text(self):
         """Test split function with uppercase text"""
-        split_text = split(self.string_without_spaces.upper(), 2)
+        split_text = split(self.string.upper(), 2)
         self.assertEqual(split_text[0], "tiiaapetig")
         self.assertEqual(split_text[1], "hsssmlsrn")
 
