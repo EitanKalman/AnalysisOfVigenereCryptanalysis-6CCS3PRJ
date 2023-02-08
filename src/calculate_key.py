@@ -1,7 +1,5 @@
 """Calculate the key for a ciphertext given the key length"""
 from collections import Counter
-
-
 try:
     from helper_functions import split, shift_char, normalise
 except ModuleNotFoundError:
