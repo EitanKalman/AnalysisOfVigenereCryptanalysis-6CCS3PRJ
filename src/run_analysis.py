@@ -3,12 +3,11 @@ from time import perf_counter
 from random import randint
 from os import listdir
 from re import compile as regex_compile
-from helper_functions import vigenere
-from analysis_algorithms.ioc_analysis import run_ioc_analysis
-from analysis_algorithms.shifted_text_coincidence import run_shifted_text_analysis
-from analysis_algorithms.kasiski_examination import run_kasiski_examination
-from calculate_key import get_key
-
+from src.helper_functions import vigenere
+from src.analysis_algorithms.ioc_analysis import run_ioc_analysis
+from src.analysis_algorithms.shifted_text_coincidence import run_shifted_text_analysis
+from src.analysis_algorithms.kasiski_examination import run_kasiski_examination
+from src.calculate_key import get_key
 
 def read_file(file_to_open):
     """
@@ -107,7 +106,7 @@ def _generate_ciphertexts(plaintexts, keys):
         all_ciphertexts.append(ciphertexts)
     return all_ciphertexts
 
-def main():
+def run_analysis():
     """The main method- entry point of the program"""
     print("Generating keys")
     keys = _generate_keys()
@@ -129,7 +128,3 @@ def main():
             # Check that the calculated keys are correct
             if calc_keys != keys:
                 print("calculated keys aren't correct")
-
-
-if __name__ == "__main__":
-    main()

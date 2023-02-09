@@ -1,4 +1,5 @@
 """Provides various functions used in the program"""
+
 def vigenere(text, key, encrypt):
     """
     Encrypt/ decrypt a message using the Vigenere cipher

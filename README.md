@@ -9,7 +9,7 @@ Sample plaintexts are provided as .txt files in the text directory
 
 Run the program with:
 ```
-$ python src/main.py
+$ python main.py
 ```
 
 Run all tests with:
