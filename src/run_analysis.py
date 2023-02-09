@@ -9,14 +9,7 @@ from src.analysis_algorithms.shifted_text_coincidence import run_shifted_text_an
 from src.analysis_algorithms.kasiski_examination import run_kasiski_examination
 from src.calculate_key import get_key
 
-def read_file(file_to_open):
-    """
-    Opens a file and reads its contents
-        Parameters:
-            file_to_open (string): The name of the file to be opened
-        Returns:
-            text (string): The contents of the file, or an empty string if an error occurs
-    """
+def _read_file(file_to_open):
     try:
         with open(f"texts/{file_to_open}", 'r', encoding="utf-8") as file:
             text = file.read()
@@ -27,17 +20,7 @@ def read_file(file_to_open):
     except FileNotFoundError:
         return ""
 
-def time_attack(ciphertext, attack):
-    """
-    Times how long a cryptographic algorithm takes on a given ciphertext
-    Parameters:
-        ciphertext (string): The ciphertext to be cryptanalysed
-        attack (function): The cryptanalysis algorithm to be used
-    Returns:
-        time (float): The time it took for the algorithm itself to run
-        time (float): The time is took for the algorithm and key calculation to run
-        key (string): The calculated key for this ciphertext
-    """
+def _time_attack(ciphertext, attack):
     start_time = perf_counter()
     calculated_key_length = attack(ciphertext)
     mid_point = perf_counter()
@@ -45,17 +28,7 @@ def time_attack(ciphertext, attack):
     end_time = perf_counter()
     return mid_point-start_time, end_time-mid_point, end_time-start_time, key
 
-def calc_average_time(ciphertexts, attack):
-    """
-    Run a cryptanalysis algorithm on multiple ciphertexts and calculate the average time
-    Parameters:
-        ciphertexts (list[strings]): The list of ciphertexts to be analysed
-        attack (function): The cryptanalysis algorithm to be used
-    Returns:
-        average_time (float): The average time across all ciphertexts (without key calculation)
-        average_time (float): The average time across all ciphertexts (with key calculation)
-        calculated_keys (list[string]): A list of the calculated keys for each ciphertext
-    """
+def _calc_average_time(ciphertexts, attack):
     total_time = 0
     total_time_key = 0
     total_time_full = 0
@@ -63,7 +36,7 @@ def calc_average_time(ciphertexts, attack):
     # For each ciphertext time how long it takes to perform the analysis and the time to do the
     # analysis and calculate the key, as well as get the calculated key
     for text in ciphertexts:
-        runtime, runtime_key, runtime_full, key = time_attack(text, attack)
+        runtime, runtime_key, runtime_full, key = _time_attack(text, attack)
         total_time += runtime
         total_time_key += runtime_key
         total_time_full += runtime_full
@@ -90,7 +63,7 @@ def _load_plaintexts():
     txt_files = list(filter(lambda x: x[-4:] == '.txt', all_files))
     plaintexts = []
     for file in txt_files:
-        plaintext = read_file(file)
+        plaintext = _read_file(file)
         if len(plaintext) > 0:
             plaintexts.append(plaintext)
     plaintexts.sort(key = len)
@@ -98,6 +71,10 @@ def _load_plaintexts():
 
 def _generate_ciphertexts(plaintexts, keys):
     all_ciphertexts = []
+    if len(plaintexts) < 1:
+        raise ValueError("plaintexts can't be empty")
+    if len(keys) < 1:
+        raise ValueError("keys can't be empty")
     for text in plaintexts:
         # For 1 plaintext, generate ciphertexts for all keys
         ciphertexts = []
@@ -123,7 +100,7 @@ def run_analysis():
     for algo in algorithms:
         for text in all_ciphertexts:
             char_count = len(text[0])
-            average_runtime, average_runtime_key, average_runtime_full, calc_keys = calc_average_time(text, algo)
+            average_runtime, average_runtime_key, average_runtime_full, calc_keys = _calc_average_time(text, algo)
             print(f"{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime}, time for key:{average_runtime_key}, time w/ key:{average_runtime_full}")
             # Check that the calculated keys are correct
             if calc_keys != keys:
