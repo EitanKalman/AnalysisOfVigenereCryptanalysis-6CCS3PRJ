@@ -1,12 +1,6 @@
 """Calculate the key for a ciphertext given the key length"""
 from collections import Counter
-
-
-try:
-    from helper_functions import split, shift_char, normalise
-except ModuleNotFoundError:
-    from src.helper_functions import split, shift_char, normalise
-
+from src.helper_functions import split, shift_char, normalise
 
 # Dictionary containing the frequencies of all letters in English
 english_letter_frequencies = {

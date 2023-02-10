@@ -1,27 +1,4 @@
 """Provides various functions used in the program"""
-def vigenere(text, key, encrypt):
-    """
-    Encrypt/ decrypt a message using the Vigenere cipher
-        Parameters:
-            text (string): The message to be encrypted/ decrypted
-            key (string): The key to be used
-            encrypt (boolean): True when encrypting, False when decrypting
-        Returns:
-            text (string): The encrypted/ decrypted message
-        Raises:
-            AssertionError: If text or key contain characters that aren't letters
-    """
-    key = key.lower()
-    assert key.isalpha()
-    output = ""
-    key_length = len(key)
-    for idx, char in enumerate(text):
-        mod = idx % key_length
-        shift = ord(key[mod]) - 97
-        if not encrypt:
-            shift = -shift
-        output += shift_char(char, shift)
-    return output
 
 def split(text, num):
     """

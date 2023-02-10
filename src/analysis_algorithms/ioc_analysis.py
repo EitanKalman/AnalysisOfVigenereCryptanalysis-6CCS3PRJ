@@ -1,11 +1,7 @@
 """Performs index of coincidence analysis on split ciphertext to calculate the key length"""
 from collections import Counter
 from math import gcd
-try:
-    from helper_functions import split
-except ModuleNotFoundError:
-    from src.helper_functions import split
-
+from src.helper_functions import split
 
 # Calculates the Index of Coincidence for a given text
 def _calculate_text_ioc(text):
