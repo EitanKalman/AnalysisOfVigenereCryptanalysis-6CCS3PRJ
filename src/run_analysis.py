@@ -3,7 +3,7 @@ from time import perf_counter
 from random import randint
 from os import listdir
 from re import compile as regex_compile
-from src.helper_functions import vigenere
+from src.helper_functions import shift_char
 from src.analysis_algorithms.ioc_analysis import run_ioc_analysis
 from src.analysis_algorithms.shifted_text_coincidence import run_shifted_text_analysis
 from src.analysis_algorithms.kasiski_examination import run_kasiski_examination
@@ -69,6 +69,19 @@ def _load_plaintexts():
     plaintexts.sort(key = len)
     return plaintexts
 
+def _vigenere(text, key, encrypt):
+    key = key.lower()
+    assert key.isalpha()
+    output = ""
+    key_length = len(key)
+    for idx, char in enumerate(text):
+        mod = idx % key_length
+        shift = ord(key[mod]) - 97
+        if not encrypt:
+            shift = -shift
+        output += shift_char(char, shift)
+    return output
+
 def _generate_ciphertexts(plaintexts, keys):
     all_ciphertexts = []
     if len(plaintexts) < 1:
@@ -79,12 +92,12 @@ def _generate_ciphertexts(plaintexts, keys):
         # For 1 plaintext, generate ciphertexts for all keys
         ciphertexts = []
         for key in keys:
-            ciphertexts.append(vigenere(text, key, True))
+            ciphertexts.append(_vigenere(text, key, True))
         all_ciphertexts.append(ciphertexts)
     return all_ciphertexts
 
 def run_analysis():
-    """The main method- entry point of the program"""
+    """Runs cryptographic analysis of the Vigenere Cipher"""
     print("Generating keys")
     keys = _generate_keys()
     print(f"keys are: {keys}")
