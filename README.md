@@ -3,16 +3,22 @@
 
 Project title: Algorithmic Analysis of Cryptanalysis of the Vigenère Cipher
 
-Requires Python 3.9 or higher
+#### Important Note: This project requires Python 3.9 or higher
 
 Sample plaintexts are provided as .txt files in the text directory
 
-Run the program with:
+
+Run the program (on Windows) with:
 ```
-$ python src/main.py
+$ python main.py
 ```
 
 Run all tests with:
 ```
 $ python -m unittest
+```
+
+On Linux replace 'python', with 'python3' in the above commands
+```
+$ python3 main.py
 ```
