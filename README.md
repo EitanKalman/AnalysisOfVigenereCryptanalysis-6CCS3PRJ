@@ -22,3 +22,7 @@ On Linux replace 'python', with 'python3' in the above commands
 ```
 $ python3 main.py
 ```
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
