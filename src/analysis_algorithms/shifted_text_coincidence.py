@@ -1,6 +1,5 @@
 """Performs shifted text coincidence analysis"""
 from math import gcd
-from functools import reduce
 
 # Pads the input string with the desired number of spaces on the left
 # Effectively shifts the input string left by n spaces
@@ -35,4 +34,4 @@ def run_shifted_text_analysis(ciphertext):
         # If the number of coincidences is above the threshold include it as a possible key length
         if coincidence>(len(ciphertext)/18):
             possible_key_lengths.append(i)
-    return reduce(gcd, possible_key_lengths)
+    return gcd(*possible_key_lengths)
