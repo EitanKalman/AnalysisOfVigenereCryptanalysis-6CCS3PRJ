@@ -42,20 +42,3 @@ class TestKasiskiExamination(TestCase):
         """Test get_possible_key_length function with non empty list"""
         with self.assertRaises(ValueError):
             kasiski_examination._get_possible_key_length([])
-
-    def test_get_key_length_with_single_value(self):
-        """Test get_key_length function with a list with a single value"""
-        ls = [5]
-        key_length = kasiski_examination._get_key_length(ls)
-        self.assertEqual(key_length, 5)
-
-    def test_get_key_length_with_multiple_values(self):
-        """Test get_key_length function with a list with multiple value"""
-        ls = [5, 10]
-        key_length = kasiski_examination._get_key_length(ls)
-        self.assertEqual(key_length, 10)
-
-    def test_get_key_length_with_no_values(self):
-        """Test get_key_length function with an empty list"""
-        with self.assertRaises(ValueError):
-            kasiski_examination._get_key_length([])

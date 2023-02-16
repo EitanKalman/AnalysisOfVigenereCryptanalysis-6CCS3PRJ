@@ -1,6 +1,5 @@
 """Performs index of coincidence analysis on split ciphertext to calculate the key length"""
 from collections import Counter
-from math import gcd
 from src.helper_functions import split
 
 # Calculates the Index of Coincidence for a given text
@@ -31,7 +30,7 @@ def run_ioc_analysis(ciphertext):
         Returns:
             likely_key_length (int): The likely length of the key
     """
-    possible_ley_lengths = []
+    possible_key_lengths = []
     # Split the ciphertext
     for i in range(2, 21):
         # Split the ciphertext into i parts and calculate the index of coincidence for the split
@@ -39,6 +38,8 @@ def run_ioc_analysis(ciphertext):
         ioc_average = _calculate_ioc_average(split_text)
         # If this split has an ioc close to English, add it to possible key length candidates
         if abs(ioc_average - 0.065) < 0.005:
-            possible_ley_lengths.append(i)
+            # print(f"split is {i}, ioc_average is {ioc_average}, difference is {abs(ioc_average - 0.065)}")
+            possible_key_lengths.append(i)
+    key_length = min(possible_key_lengths)
     # Reduce the list of possible keys lengths to the greatest common divisor and return
-    return gcd(*possible_ley_lengths)
+    return key_length

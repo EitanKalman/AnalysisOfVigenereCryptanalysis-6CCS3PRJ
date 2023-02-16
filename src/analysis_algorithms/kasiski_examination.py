@@ -1,5 +1,4 @@
 """Performs Kasiski examination"""
-from math import gcd
 from collections import Counter
 
 def _repeated_substring_distance(text):
@@ -45,15 +44,6 @@ def _get_possible_key_length(distances):
             possible_key_lengths.append(key)
     return possible_key_lengths
 
-# Get the length of the key by finding the lowest common multiple of all possible key lengths
-def _get_key_length(possible_key_lengths):
-    if len(possible_key_lengths) == 0:
-        raise ValueError
-    lcm = 1
-    for i in possible_key_lengths:
-        lcm = lcm*i//gcd(lcm, i)
-    return lcm
-
 def run_kasiski_examination(ciphertext):
     """
     Perform Kasiski Examination
@@ -65,5 +55,5 @@ def run_kasiski_examination(ciphertext):
     """
     distances = _repeated_substring_distance(ciphertext)
     possible_key_lengths = _get_possible_key_length(distances)
-    key_length = _get_key_length(possible_key_lengths)
+    key_length = max(possible_key_lengths)
     return key_length
