@@ -33,7 +33,7 @@ def run_ioc_analysis(ciphertext):
     """
     possible_ley_lengths = []
     # Split the ciphertext
-    for i in range(2, 20):
+    for i in range(2, 21):
         # Split the ciphertext into i parts and calculate the index of coincidence for the split
         split_text = split(ciphertext, i)
         ioc_average = _calculate_ioc_average(split_text)
