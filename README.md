@@ -3,7 +3,6 @@
 
 Project title: Algorithmic Analysis of Cryptanalysis of the Vigenère Cipher
 
-#### Important Note: This project requires Python 3.9 or higher
 
 Sample plaintexts are provided as .txt files in the text directory
 
