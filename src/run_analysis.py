@@ -1,7 +1,6 @@
 """Main- the start point of the program"""
 from time import perf_counter
 from random import randint
-from os import listdir
 from re import compile as regex_compile
 from src.helper_functions import shift_char
 from src.analysis_algorithms.ioc_analysis import run_ioc_analysis
@@ -11,7 +10,7 @@ from src.calculate_key import get_key
 
 def _read_file(file_to_open):
     try:
-        with open(f"texts/{file_to_open}", 'r', encoding="utf-8") as file:
+        with open(file_to_open, 'r', encoding="utf-8") as file:
             text = file.read()
             text = text.lower()
             reg = regex_compile('[^a-z]')
@@ -58,14 +57,12 @@ def _generate_keys():
         keys.append(key)
     return keys
 
-def _load_plaintexts():
-    all_files = listdir("texts/")
-    txt_files = list(filter(lambda x: x[-4:] == '.txt', all_files))
+def _generate_plaintexts():
+    file = _read_file("plaintext.txt")
     plaintexts = []
-    for file in txt_files:
-        plaintext = _read_file(file)
-        if len(plaintext) > 0:
-            plaintexts.append(plaintext)
+    for i in range(5000, 95001, 5000):
+        split = file[:i]
+        plaintexts.append(split)
     plaintexts.sort(key = len)
     return plaintexts
 
@@ -102,7 +99,7 @@ def run_analysis():
     keys = _generate_keys()
     print(f"keys are: {keys}")
     print("Loading plaintexts")
-    plaintexts = _load_plaintexts()
+    plaintexts = _generate_plaintexts()
     print("Generating ciphertexts")
     all_ciphertexts = _generate_ciphertexts(plaintexts, keys)
     print("Ciphertexts Generated \nRunning cryptanalysis algorithms")

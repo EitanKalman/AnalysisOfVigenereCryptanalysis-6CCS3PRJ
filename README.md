@@ -4,9 +4,6 @@
 Project title: Algorithmic Analysis of Cryptanalysis of the Vigenère Cipher
 
 
-Sample plaintexts are provided as .txt files in the text directory
-
-
 Run the program (on Windows) with:
 ```
 $ python main.py
