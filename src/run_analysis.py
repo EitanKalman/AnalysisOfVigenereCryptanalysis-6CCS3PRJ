@@ -28,23 +28,23 @@ def _time_attack(ciphertext, attack):
     return mid_point-start_time, end_time-mid_point, end_time-start_time, key
 
 def _calc_average_time(ciphertexts, attack):
+    algo_time = 0
+    keu_time = 0
     total_time = 0
-    total_time_key = 0
-    total_time_full = 0
     calculated_keys = []
     # For each ciphertext time how long it takes to perform the analysis and the time to do the
     # analysis and calculate the key, as well as get the calculated key
     for text in ciphertexts:
         runtime, runtime_key, runtime_full, key = _time_attack(text, attack)
-        total_time += runtime
-        total_time_key += runtime_key
-        total_time_full += runtime_full
+        algo_time += runtime
+        keu_time += runtime_key
+        total_time += runtime_full
         calculated_keys.append(key)
     # Calculate the average time
+    algo_time /= len(ciphertexts)
+    keu_time /= len(ciphertexts)
     total_time /= len(ciphertexts)
-    total_time_key /= len(ciphertexts)
-    total_time_full /= len(ciphertexts)
-    return total_time, total_time_key, total_time_full, calculated_keys
+    return algo_time, keu_time, total_time, calculated_keys
 
 def _generate_keys():
     keys = []
