@@ -38,7 +38,6 @@ def run_ioc_analysis(ciphertext):
         ioc_average = _calculate_ioc_average(split_text)
         # If this split has an ioc close to English, add it to possible key length candidates
         if abs(ioc_average - 0.065) < 0.005:
-            # print(f"split is {i}, ioc_average is {ioc_average}, difference is {abs(ioc_average - 0.065)}")
             possible_key_lengths.append(i)
     key_length = min(possible_key_lengths)
     # Reduce the list of possible keys lengths to the greatest common divisor and return
