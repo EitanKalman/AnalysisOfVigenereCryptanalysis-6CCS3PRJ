@@ -2,6 +2,7 @@
 from time import perf_counter
 from random import randint
 from re import compile as regex_compile
+import csv
 from src.helper_functions import shift_char
 from src.analysis_algorithms.ioc_analysis import run_ioc_analysis
 from src.analysis_algorithms.shifted_text_coincidence import run_shifted_text_analysis
@@ -106,12 +107,19 @@ def run_analysis():
 
     algorithms = [run_ioc_analysis, run_shifted_text_analysis, run_kasiski_examination]
 
-    # Run all algorithms on all plaintexts and print the average time
-    for algo in algorithms:
-        for text in all_ciphertexts:
-            char_count = len(text[0])
-            average_runtime, average_runtime_key, average_runtime_full, calc_keys = _calc_average_time(text, algo)
-            print(f"{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime}, time for key:{average_runtime_key}, time w/ key:{average_runtime_full}")
-            # Check that the calculated keys are correct
-            if calc_keys != keys:
-                print("calculated keys aren't correct")
+    with open('analysis.csv', 'w', encoding='UTF8', newline='') as f:
+        writer = csv.writer(f)
+        header = ["Algorithm name", "Time w/o key", "Time for key", "Time w/ key"]
+        writer.writerow(header)
+
+        # Run all algorithms on all plaintexts and print the average time
+        for algo in algorithms:
+            for text in all_ciphertexts:
+                char_count = len(text[0])
+                average_runtime, average_runtime_key, average_runtime_full, calc_keys = _calc_average_time(text, algo)
+                writer.writerow([algo.__name__, char_count, average_runtime, average_runtime_key, average_runtime_full])
+                print(f"{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime}, time for key:{average_runtime_key}, time w/ key:{average_runtime_full}")
+                # Check that the calculated keys are correct
+                if calc_keys != keys:
+                    print("calculated keys aren't correct")
+            writer.writerow([])
