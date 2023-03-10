@@ -109,7 +109,7 @@ def run_analysis():
 
     with open('analysis.csv', 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
-        header = ["Algorithm name", "Time w/o key", "Time for key", "Time w/ key"]
+        header = ["Algorithm name", "Ciphertext length", "Time w/o key", "Time for key", "Time w/ key"]
         writer.writerow(header)
 
         # Run all algorithms on all plaintexts and print the average time
