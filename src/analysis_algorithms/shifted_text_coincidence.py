@@ -26,7 +26,7 @@ def run_shifted_text_analysis(ciphertext):
     """
     possible_key_lengths = []
     # Created shifted versions of the ciphertext
-    for i in range(3, 21):
+    for i in range(2, 21):
         text = _add_left_padding(ciphertext, i)
         # Get the number of coincidences for this shifted version
         coincidence = _compare(ciphertext, text)
