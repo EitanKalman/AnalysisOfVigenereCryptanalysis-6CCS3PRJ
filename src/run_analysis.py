@@ -1,5 +1,5 @@
 """Main- the start point of the program"""
-from time import perf_counter_ns
+from time import perf_counter
 from random import randint
 from re import compile as regex_compile
 import csv
@@ -21,11 +21,11 @@ def _read_file(file_to_open):
         return ""
 
 def _time_attack(ciphertext, attack):
-    start_time = perf_counter_ns()
+    start_time = perf_counter()
     calculated_key_length = attack(ciphertext)
-    mid_point = perf_counter_ns()
+    mid_point = perf_counter()
     key = get_key(ciphertext, calculated_key_length)
-    end_time = perf_counter_ns()
+    end_time = perf_counter()
     return mid_point-start_time, end_time-mid_point, end_time-start_time, key
 
 def _calc_average_time(ciphertexts, attack):
@@ -45,7 +45,7 @@ def _calc_average_time(ciphertexts, attack):
     algo_time /= len(ciphertexts)
     keu_time /= len(ciphertexts)
     total_time /= len(ciphertexts)
-    return algo_time, keu_time, total_time, calculated_keys
+    return algo_time*1000, keu_time*1000, total_time*1000, calculated_keys*1000
 
 def _generate_keys():
     keys = []
