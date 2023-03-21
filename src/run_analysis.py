@@ -45,7 +45,7 @@ def _calc_average_time(ciphertexts, attack):
     algo_time /= len(ciphertexts)
     key_time /= len(ciphertexts)
     total_time /= len(ciphertexts)
-    return algo_time*1000, key_time*1000, total_time*1000, calculated_keys*1000
+    return algo_time*1000, key_time*1000, total_time*1000, calculated_keys
 
 def _generate_keys():
     keys = []
