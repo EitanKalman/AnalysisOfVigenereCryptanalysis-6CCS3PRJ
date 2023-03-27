@@ -61,7 +61,7 @@ def _generate_keys():
 def _generate_plaintexts():
     file = _read_file("plaintext.txt")
     plaintexts = []
-    for i in range(5000, 95001, 5000):
+    for i in range(5000, len(file) + 1, 5000):
         split = file[:i]
         plaintexts.append(split)
     plaintexts.sort(key = len)
