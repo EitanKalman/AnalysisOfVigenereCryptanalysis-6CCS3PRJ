@@ -117,8 +117,10 @@ def run_analysis():
             for text in all_ciphertexts:
                 char_count = len(text[0])
                 average_runtime, average_runtime_key, average_runtime_full, calc_keys = _calc_average_time(text, algo)
-                writer.writerow([algo.__name__, char_count, average_runtime, average_runtime_key, average_runtime_full])
-                print(f"{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime}, time for key:{average_runtime_key}, time w/ key:{average_runtime_full}")
+                writer.writerow([algo.__name__, char_count, average_runtime, average_runtime_key,
+                                 average_runtime_full])
+                print(f"""{algo.__name__}, ciphertext length:{char_count}, time w/o key:{average_runtime},
+                            time for key:{average_runtime_key}, time w/ key:{average_runtime_full}""")
                 # Check that the calculated keys are correct
                 if calc_keys != keys:
                     print("calculated keys aren't correct")
