@@ -53,7 +53,7 @@ def _generate_keys():
         key_length = randint(3,20)
         key = ""
         for _ in range(0, key_length):
-            val = randint(97, 123)
+            val = randint(97, 122)
             key +=chr(val)
         keys.append(key)
     return keys
